@@ -1,12 +1,13 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Player player = null;
         boolean gameRunning = true;
+        Room roomManager = new Room();
 
-        System.out.println("                 LABRYNTH OF THE LOST                      ");
+        System.out.println("                  LABRYNTH OF THE LOST                      ");
         System.out.println();
         System.out.println("Welcome, brave adventurer!");
         System.out.println("You stand at the entrance of the ancient Labrynth of the Lost.");
@@ -57,11 +58,6 @@ public class Main {
             System.out.println("Gold: " + player.getGold());
             System.out.println("\nWhat would you like to do?");
             System.out.println("1. Explore forward");
-           
-
-            // This is wher the random room selecter is and what rooms are available and will come next. 
-            // Just the base level 
-
             System.out.println("2. Quit game");
             
             String action = scanner.nextLine();
@@ -69,15 +65,25 @@ public class Main {
             switch(action) {
                 case "1":
                     System.out.println("You venture deeper into the labyrinth...");
-
-                    //now current room is updated and where you room is at. 
+                    String nextRoom = roomManager.getNextRoom();
+                    Room currentRoom = createRoom(nextRoom);
+                    currentRoom.playRoom(player);
+                    roomManager.setCurrentRoom(nextRoom);
+                    
+                    // Check if we've reached the final boss
+                    if (nextRoom.equals("finalboss")) {
+                        FinalBossRoom finalBoss = (FinalBossRoom) currentRoom;
+                        if (finalBoss.isGameWon()) {
+                            gameRunning = false;
+                        }
+                    }
                     break;
                 case "2":
                     gameRunning = false;
                     System.out.println("Thanks for playing!");
                     break;
                 default:
-                    System.out.println("Invalid choice! Please select 1-x.");
+                    System.out.println("Invalid choice! Please select 1 or 2.");
             }
         }
 
@@ -86,5 +92,26 @@ public class Main {
         }
 
         scanner.close();
+    }
+
+    private static Room createRoom(String roomType) {
+        switch(roomType) {
+            case "decision":
+                return new DecisionRoom();
+            case "horde":
+                return new HordeRoom();
+            case "puzzle":
+                return new PuzzleRoom();
+            case "miniboss":
+                return new MinibossRoom();
+            case "chasm":
+                return new ChasmRoom();
+            case "trader":
+                return new TraderRoom();
+            case "finalboss":
+                return new FinalBossRoom();
+            default:
+                return new Room();
+        }
     }
 }
