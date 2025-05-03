@@ -25,7 +25,7 @@ public class ChasmRoom extends Room {
             choice = scanner.nextLine().toLowerCase();
             if (!choice.equals("y")) {
                 System.out.println("You remain trapped in the room...");
-                System.out.println("GAME OVER");
+                player.setHealth(0);
                 return;
             }
         }
@@ -45,7 +45,7 @@ public class ChasmRoom extends Room {
             } else {
                 System.out.println("Your jump falls short...");
                 System.out.println("You plummet into the darkness below...");
-                System.out.println("GAME OVER");
+                player.setHealth(0);
                 return;
             }
         }
