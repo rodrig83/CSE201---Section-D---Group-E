@@ -7,6 +7,7 @@ public class Enemy {
 	private String type;
 	public int health;
 	private int damage;
+	
 	/**
 	* Constructs an Enemy with a specific type and initializes health and damage accordingly.
 	* @param kind The type of the enemy (e.g., "ork", "goblin", "minotaur")
@@ -60,8 +61,8 @@ public class Enemy {
 	public int health() {
 		return health;
 	}
-
-	 /**
+ 
+	/**
      	* Reduces the enemy's health by a specified amount and displays status messages.
      	* @param num The amount of damage taken
      	*/
