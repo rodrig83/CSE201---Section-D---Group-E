@@ -1,15 +1,33 @@
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * The FinalBossRoom class represents the last and most challenging battle of the labyrinth.
+ * In this room, the player confronts the ultimate enemy: a powerful Minotaur with increased stats.
+ * The player must strategically attack, survive enemy retaliation, and use items wisely.
+ * The boss enters a rage phase when its health drops below 50%, doubling its attack damage.
+ * Additionally, a fog-based damage mechanic triggers every 3 turns to apply pressure.
+ * Upon victory, the player wins the game. If defeated, the game ends.
+ */
 public class FinalBossRoom extends Room {
     private Random random;
     private boolean gameWon = false;
 
+    /**
+     * Constructs a FinalBossRoom and prepares for the final encounter.
+     */
     public FinalBossRoom() {
         super();
         random = new Random();
     }
 
+    /**
+     * Begins the final boss fight sequence. The player engages the most powerful enemy in a turn-based
+     * battle. The player may attack or use combat items like Fire Potions and Health Potions. The boss
+     * deals heavy damage, grows enraged at low health, and is supported by a recurring fog damage mechanic.
+     *
+     * @param player The player engaging in the final boss fight
+     */
     public void playRoom(Player player) {
         System.out.println("\nAs you descend deeper into the labyrinth, a thick fog begins to surround you...");
         System.out.println("The air grows heavy with an ominous presence...");
@@ -100,6 +118,10 @@ public class FinalBossRoom extends Room {
         }
     }
 
+    /**
+     * Returns whether the player has won the game after the final boss fight.
+     * @return true if the player defeated the final boss; false otherwise
+     */
     public boolean isGameWon() {
         return gameWon;
     }
