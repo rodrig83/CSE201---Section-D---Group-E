@@ -1,11 +1,22 @@
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * The MinibossRoom class represents a mid-tier boss encounter in which the player must battle
+ * a powerful Minotaur. This room introduces a turn-based combat system where the player can either
+ * attack or use items from their inventory. The Minotaur has a special rage mode that activates
+ * when its health drops below 50%, doubling its next attack's damage.
+ * Victory grants the player a significant reward: gold and a permanent increase in max health.
+ * Failure ends the game.
+ */
 public class MinibossRoom extends Room {
     private Random random;
     private Item specialReward;
     private Scanner scanner;
 
+    /**
+     * Constructs a MinibossRoom instance and initializes the special reward and input scanner.
+     */
     public MinibossRoom() {
         super();
         random = new Random();
@@ -13,6 +24,15 @@ public class MinibossRoom extends Room {
         scanner = new Scanner(System.in);
     }
 
+    /**
+     * Starts a combat sequence against the Minotaur. The player can choose to attack or use items.
+     * If the Minotaur drops below half health and hasn't already used its special ability, it
+     * enters a rage mode and delivers a devastating attack.
+     * Fire Potions deal flat damage to the Minotaur; Health Potions restore player health. Invalid inputs
+     * result in a skipped turn. Winning grants gold and increases the player's max and current health.
+     *
+     * @param player The player engaging in combat with the Minotaur
+     */
     public void playRoom(Player player) {
         System.out.println("\nYou enter a grand chamber with ominous energy in the air...");
         System.out.println("A powerful Minotaur stands before you, its massive form blocking the exit!");
