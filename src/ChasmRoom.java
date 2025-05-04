@@ -1,14 +1,33 @@
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * The ChasmRoom class represents a challenge room in the labyrinth where the player must attempt
+ * to jump across a deep chasm. Success depends on the player's class or a probability check.
+ * Warriors always succeed, while other classes have a 75% success rate.
+ *
+ * Failure results in death, ending the game. Success rewards the player with gold.
+ */
 public class ChasmRoom extends Room {
     private Random random;
 
+    /**
+     * Constructs a ChasmRoom and initializes the random number generator used
+     * for determining jump success for non-warrior classes.
+     */
     public ChasmRoom() {
         super();
         random = new Random();
     }
 
+    /**
+     * Handles the gameplay logic of the ChasmRoom.
+     * Prompts the player for input to attempt the jump, calculates the success
+     * or failure based on class or probability, and applies the outcome accordingly.
+     * If the player refuses to jump twice, they are considered trapped and their health is set to 0.
+     *
+     * @param player The Player object attempting to navigate the ChasmRoom
+     */
     public void playRoom(Player player) {
         System.out.println("\nYou enter a large room with a deep chasm running through its center.");
         System.out.println("The chasm is too wide to walk around, and the walls are too smooth to climb.");
