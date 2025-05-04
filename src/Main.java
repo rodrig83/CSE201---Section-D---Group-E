@@ -1,6 +1,21 @@
 import java.util.Scanner;
 
+/**
+ * The Main class serves as the entry point for the Labyrinth of the Lost game.
+ * It manages the player setup, character selection, game loop, and room transitions.
+ * The player explores different types of rooms, facing puzzles, battles, and challenges
+ * until they either complete the game or die trying.
+ */
 public class Main {
+
+    /**
+     * Starts the Labyrinth of the Lost game.
+     * Prompts the player to choose a character, then enters a loop where the player
+     * explores randomly selected rooms and encounters different gameplay mechanics.
+     * The game ends either when the player dies or defeats the final boss.
+     *
+     * @param args Command-line arguments (not used)
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Player player = null;
@@ -94,6 +109,13 @@ public class Main {
         scanner.close();
     }
 
+    /**
+     * Creates and returns a Room instance based on the room type string.
+     * Used to dynamically generate room objects based on game progression.
+     *
+     * @param roomType The type of room to generate (e.g. "puzzle", "horde")
+     * @return The corresponding Room object
+     */
     private static Room createRoom(String roomType) {
         switch(roomType) {
             case "decision":
