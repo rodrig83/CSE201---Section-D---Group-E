@@ -1,10 +1,19 @@
 import java.util.Scanner;
 
+/**
+ * The DecisionRoom class represents a choice-based room where the player selects between
+ * two powerful items: a Health Potion or a Weapon Upgrade. Depending on the player's
+ * choice, they either heal or gain bonus damage. Rogues have the option to steal both.
+ */
 public class DecisionRoom extends Room {
     private Item potion;
     private Item sword;
     private Scanner scanner;
 
+    /**
+     * Constructs a DecisionRoom and initializes two choice items (Health Potion and Weapon Upgrade)
+     * along with the scanner for user input.
+     */
     public DecisionRoom() {
         super();
         this.potion = new Item("Health Potion", 0, "Restores 20 health");
@@ -12,6 +21,13 @@ public class DecisionRoom extends Room {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Plays the interaction logic for the DecisionRoom. The player must choose between one of two
+     * items presented on pedestals. A special option exists for rogues to take both items without
+     * penalty. Other classes are punished for greed.
+     *
+     * @param player The player making the item decision
+     */
     public void playRoom(Player player) {
         System.out.println("\nYou enter a room with two pedestals, each holding a different item.");
         System.out.println("On the left pedestal: A " + potion.getName() + " (" + potion.getDescription() + ")");
