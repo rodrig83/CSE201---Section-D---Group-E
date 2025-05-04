@@ -1,11 +1,19 @@
 import java.util.Scanner;
 
+/**
+ * The TraderRoom class represents a room where the player can purchase useful items
+ * using gold. Items include health potions, weapon upgrades, and fire potions.
+ */
 public class TraderRoom extends Room {
     private Item healthPotion;
     private Item weaponUpgrade;
     private Item firePotion;
     private Scanner scanner;
 
+    /**
+     * Constructs a TraderRoom and initializes the three predefined items (Health Potion,
+     * Weapon Upgrade, and Fire Potion) along with a Scanner for reading player input.
+     */
     public TraderRoom() {
         super();
         healthPotion = new Item("Health Potion", 15, "Restores 20 health");
@@ -14,6 +22,14 @@ public class TraderRoom extends Room {
         scanner = new Scanner(System.in);
     }
 
+    /**
+     * Executes the shop interaction logic when the player enters the TraderRoom.
+     * Displays available items, handles gold deduction, applies item effects, and
+     * manages user input including invalid choices. Each item choice corresponds to a
+     * different stat modification or inventory action.
+     *
+     * @param player The player currently in the room, whose gold, health, damage, or inventory may change
+     */
     public void playRoom(Player player) {
         System.out.println("\nYou enter a dimly lit room. A hooded figure stands behind a wooden counter.");
         System.out.println("The trader greets you with a sly smile. 'Welcome, adventurer. Care to browse my wares?'");
