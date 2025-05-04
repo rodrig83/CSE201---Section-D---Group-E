@@ -2,18 +2,31 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Arrays;
 
+/**
+ * The PuzzleRoom class represents a memory-based challenge room in the labyrinth.
+ * Players are shown a random sequence of tile numbers, which they must memorize
+ * and enter correctly to succeed. Failure results in damage, while success rewards
+ * gold. Each session has a single attempt.
+ */
 public class PuzzleRoom extends Room {
     private int[] correctSequence;
     private Random random;
     private static final int SEQUENCE_LENGTH = 4;
     private static final int MAX_TILE_NUMBER = 5;
 
+    /**
+     * Constructs a PuzzleRoom and initializes the correct sequence using random values.
+     */
     public PuzzleRoom() {
         super();
         random = new Random();
         generateSequence();
     }
 
+    /**
+     * Generates a random sequence of tile numbers for the puzzle.
+     * The sequence contains values between 1 and MAX_TILE_NUMBER.
+     */
     private void generateSequence() {
         correctSequence = new int[SEQUENCE_LENGTH];
         for (int i = 0; i < SEQUENCE_LENGTH; i++) {
@@ -21,6 +34,13 @@ public class PuzzleRoom extends Room {
         }
     }
 
+    /**
+     * Plays the puzzle room, displaying the sequence, clearing the screen,
+     * and then prompting the player to replicate it. The outcome (damage or reward)
+     * is based on input accuracy.
+     *
+     * @param player The player attempting the puzzle
+     */
     public void playRoom(Player player) {
         System.out.println("\nYou enter a mysterious room with " + MAX_TILE_NUMBER + " numbered tiles on the floor.");
         System.out.println("As you step in, the tiles briefly light up in a sequence...");
