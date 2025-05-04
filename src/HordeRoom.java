@@ -1,8 +1,26 @@
+/**
+ * The HordeRoom class represents a combat-focused room where the player faces multiple goblins.
+ * The player must survive a series of combat rounds against three enemies. Mages have a special
+ * area-of-effect ability that allows them to damage all goblins at once. The goal is to defeat all
+ * enemies while managing health and using inventory items wisely.
+ * Upon success, the player receives a gold reward and continues the journey.
+ */
 public class HordeRoom extends Room {
+
+    /**
+     * Constructs a HordeRoom instance and initializes its state.
+     */
     public HordeRoom() {
         super();
     }
 
+    /**
+     * Executes the room's logic by initiating a battle between the player and three goblins.
+     * Handles class-based combat mechanics (e.g., mage AOE spells), enemy retaliation,
+     * player health management, and end-of-battle gold rewards.
+     *
+     * @param player The player entering the room and fighting the goblins
+     */
     public void playRoom(Player player) {
         System.out.println("You enter a dark chamber and are confronted by three goblins!");
         Enemy[] goblins = new Enemy[3];
@@ -66,6 +84,12 @@ public class HordeRoom extends Room {
         System.out.println("You leave the horde room.");
     }
 
+    /**
+     * Checks whether any goblins in the array are still alive.
+     *
+     * @param goblins Array of Enemy objects representing goblins
+     * @return true if at least one goblin has health > 0, false otherwise
+     */
     private boolean anyGoblinAlive(Enemy[] goblins) {
         for (Enemy goblin : goblins) {
             if (goblin.health() > 0) {
